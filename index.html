@@ -13,7 +13,32 @@
           extend: {
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
-            }
+            },
+            animation: {
+              blob: "blob 7s infinite",
+              float: "float 6s ease-in-out infinite",
+              'float-delayed': "float 6s ease-in-out 3s infinite",
+            },
+            keyframes: {
+              blob: {
+                "0%": {
+                  transform: "translate(0px, 0px) scale(1)",
+                },
+                "33%": {
+                  transform: "translate(30px, -50px) scale(1.1)",
+                },
+                "66%": {
+                  transform: "translate(-20px, 20px) scale(0.9)",
+                },
+                "100%": {
+                  transform: "translate(0px, 0px) scale(1)",
+                },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
+              }
+            },
           }
         }
       }
@@ -31,14 +56,6 @@
             animation: shimmer 2s infinite linear;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
         }
@@ -58,6 +75,18 @@
             0% { opacity: 0; transform: scale(0.95); }
             100% { opacity: 1; transform: scale(1); }
         }
+        
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
     </style>
 
 <script type="importmap">
@@ -74,9 +103,9 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/novy-start-app/assets/index-Cwex-1SG.js"></script>
+  <script type="module" crossorigin src="/novy-start-app/assets/index-CUaDOCQZ.js"></script>
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-slate-900 dark:text-white antialiased selection:bg-indigo-100 selection:text-indigo-900 transition-colors duration-300">
+<body class="bg-gray-50 text-gray-900 dark:bg-slate-900 dark:text-white antialiased selection:bg-indigo-100 selection:text-indigo-900 transition-colors duration-300 overflow-x-hidden">
     <div id="root"></div>
 </body>
 </html>
