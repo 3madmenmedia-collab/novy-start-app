@@ -20,6 +20,8 @@
               float: "float 6s ease-in-out infinite",
               'float-delayed': "float 6s ease-in-out 3s infinite",
               'spin-slow': 'spin 12s linear infinite',
+              'bounce-small': 'bounce-small 0.5s infinite',
+              'shimmer': 'shimmer 2s infinite linear',
             },
             keyframes: {
               blob: {
@@ -31,6 +33,14 @@
               float: {
                 "0%, 100%": { transform: "translateY(0)" },
                 "50%": { transform: "translateY(-20px)" },
+              },
+              'bounce-small': {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-5px)" },
+              },
+              shimmer: {
+                "0%": { transform: "translateX(-100%)" },
+                "100%": { transform: "translateX(100%)" },
               }
             },
           }
@@ -45,14 +55,55 @@
         body { font-family: 'Inter', sans-serif; }
         h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Outfit', sans-serif; }
         
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        /* 3D TILT EFFECT UTILITIES */
+        .tilt-card {
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
         }
-        .animate-shimmer {
-            animation: shimmer 2s infinite linear;
+        .tilt-card-content {
+            transform: translateZ(20px);
         }
-        
+        .perspective-container {
+            perspective: 1000px;
+        }
+
+        /* JUICY CHECKBOX */
+        .juicy-check {
+            animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* CARD FLIP */
+        .flip-card {
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 2rem;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
         }
@@ -67,15 +118,6 @@
             background-color: #475569;
         }
 
-        .modal-enter {
-            animation: modalPop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes modalPop {
-            0% { opacity: 0; transform: scale(0.95) translateY(10px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        
         /* Glassmorphism utility */
         .glass {
             background: rgba(255, 255, 255, 0.85);
@@ -115,7 +157,7 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="./assets/index-C-d8nT-m.js"></script>
+  <script type="module" crossorigin src="./assets/index-Dnp7f-zC.js"></script>
 </head>
 <body class="bg-[#F8FAFC] text-slate-900 dark:bg-[#0B1120] dark:text-white antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-300 overflow-x-hidden">
     <div id="root"></div>
